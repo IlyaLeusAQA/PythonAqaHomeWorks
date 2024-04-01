@@ -34,11 +34,3 @@ def test_user_not_found():
     assert response.status_code == 404
 
 
-
-"""Домашнее задание:
-1. Написать тесты из видео
-2. Написать тесты на методы(в отдельном файле все три теста):
-2.1 LIST <RESOURCE>
-2.2 SINGLE <RESOURCE>
-2.3 SINGLE <RESOURCE> NOT FOUND
-"""
