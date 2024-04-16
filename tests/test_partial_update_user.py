@@ -52,5 +52,3 @@ def test_partial_update_user_data_only_job():
         assert response_json['job'] == body['job']
     with allure.step(f'Проверяем,что {update_date[0:16]} равен {current_date[0:16]}'):
         assert update_date[0:16] == current_date[0:16]
-
-
