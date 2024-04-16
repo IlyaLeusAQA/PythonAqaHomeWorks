@@ -33,3 +33,25 @@ CREATED_USER_SCHEME = {
     },
     "required": ["id", "createdAt"]
 }
+
+UPDATE_USER_SCHEME = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"},
+        "job": {"type": "string"},
+        "updatedAt": {"type": "string"}
+
+    },
+    "required": ["name", "job", "updatedAt"]
+}
+
+PARTIAL_UPDATE_USER_SCHEME = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"},
+        "job": {"type": "string"},
+        "updatedAt": {"type": "string"}
+
+    },
+    "required": ["updatedAt"]
+}
