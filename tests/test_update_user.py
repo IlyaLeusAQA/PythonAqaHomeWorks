@@ -32,4 +32,3 @@ def test_update_user_name_and_job():
         assert response_json['job'] == body['job']
     with allure.step(f'Проверяем,что {update_date[0:16]} равен {current_date[0:16]}'):
         assert update_date[0:16] == current_date[0:16]
-
