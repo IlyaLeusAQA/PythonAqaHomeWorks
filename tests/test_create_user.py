@@ -48,5 +48,5 @@ def test_create_user_without_name_and_without_job():
     with allure.step(f'Проверяем код ответа'):
         assert response.status_code == 400
 
-        print(response.status_code)
+
 
