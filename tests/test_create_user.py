@@ -37,10 +37,24 @@ def test_create_user_with_name_and_job():
 
 
 @allure.suite('Создание тестового юзера')
-@allure.title('Создание юзера без имени и без работы')
+@allure.title('Создание юзера без полей имени и без работы')
 def test_create_user_without_name_and_without_job():
     body = {
 
+    }
+    with allure.step(f'Отправляем запрос по адресу: {BASE_URL}'):
+        response = httpx.post(BASE_URL, json=body)
+
+    with allure.step(f'Проверяем код ответа'):
+        assert response.status_code == 400
+
+
+@allure.suite('Создание тестового юзера')
+@allure.title('Создание юзера с пустым значением имени и работы')
+def test_create_user_empty_data_name_and_job():
+    body = {
+        "name": "",
+        "job": ""
     }
     with allure.step(f'Отправляем запрос по адресу: {BASE_URL}'):
         response = httpx.post(BASE_URL, json=body)
