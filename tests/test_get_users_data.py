@@ -8,6 +8,8 @@ LIST_USERS = "api/users?page=2"
 SINGLE_USER = "api/users/2"
 EMAIL_ENDS = "@reqres.in"
 USER_NOT_FOUND = "api/users/23"
+DELAY_ENDPOINT = "api/users?delay=3"
+
 
 @allure.suite('Получение различных данных пользователей')
 @allure.title('Получение списка пользователей')
@@ -26,6 +28,7 @@ def test_get_list_users():
             with allure.step(f'Проверяем ссылку на аватар'):
                 assert item['avatar'] == f'{BASE_URL}img/faces/{item["id"]}-image.jpg'
 
+
 @allure.suite('Получение различных данных пользователей')
 @allure.title('Получение данных одного пользователя')
 def test_get_single_user():
@@ -42,6 +45,7 @@ def test_get_single_user():
     with allure.step(f'Проверяем ссылку на аватар'):
         assert users_data['avatar'] == f'{BASE_URL}img/faces/{users_data["id"]}-image.jpg'
 
+
 @allure.suite('Получение различных данных пользователей')
 @allure.title('Попытка получения данных по несуществующему пользователю')
 def test_user_not_found():
@@ -50,4 +54,19 @@ def test_user_not_found():
     with allure.step(f'Проверяем код ответа'):
         assert response.status_code == 404
 
+@allure.suite('Получение различных данных пользователей')
+@allure.title('Получение списка пользователей c задержкой в 3 секунды')
+def test_delay_request_list_users():
+    with allure.step(f'Отправляем запрос по адресу: {BASE_URL + DELAY_ENDPOINT}'):
+        response = httpx.get(BASE_URL + DELAY_ENDPOINT, timeout=4)
+    with allure.step(f'Проверяем код ответа'):
+        assert response.status_code == 200
 
+    users_data = response.json()['data']
+    for item in users_data:
+        with allure.step(f'Проверяем структура объекта c id: {item["id"]}'):
+            validate(item, USER_DATA_SCHEMA)
+            with allure.step(f'Проверяем, что email оканчивается на {EMAIL_ENDS}'):
+                assert item['email'].endswith(EMAIL_ENDS)
+            with allure.step(f'Проверяем ссылку на аватар'):
+                assert item['avatar'] == f'{BASE_URL}img/faces/{item["id"]}-image.jpg'

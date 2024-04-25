@@ -44,3 +44,22 @@ UPDATE_USER_SCHEME = {
     },
     "required": ["updatedAt"]
 }
+
+
+SUCCESSFUL_LOGIN_USER_SCHEME = {
+    "type": "object",
+    "properties": {
+        "token": {"type": "string"}
+
+    },
+    "required": ["token"]
+}
+
+ERROR_RESPONSE_SCHEME = {
+    "type": "object",
+    "properties": {
+        "error": {"type": "string"}
+
+    },
+    "required": ["error"]
+}
