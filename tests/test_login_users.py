@@ -7,7 +7,7 @@ import allure
 
 BASE_URL = 'https://reqres.in/'
 LOGIN_ENDPOINT = 'api/login'
-json_file = open('/Users/ilyaleus/PycharmProjects/lessonPython/core/data_providers/test_login_data.json')
+json_file = open('core/data_providers/test_login_data.json')
 login_data = json.load(json_file)
 MISSED_EMAIL = 'Missing email or username'
 MISSED_PASSWORD = 'Missing password'
